@@ -1,2 +1,3 @@
-class Category < ApplicationRecord
+class Category < ActiveRecord::Base
+    has_many :events
 end

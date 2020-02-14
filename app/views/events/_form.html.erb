@@ -1,0 +1,7 @@
+<%= form_with(model: @event, url: url) do |f|%>
+    <%=label_tag :name%>
+    <%=text_field_tag :name%>
+    <%=label_tag :discription%>
+    <%= text_area_tag :discription, nil %>
+    <%= submit_tag submit%>
+<%end%>

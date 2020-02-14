@@ -1,0 +1,9 @@
+<h1>Evento</h1>
+<h2>Sign In</h2>
+<%=form_with(url: "/signin",method: "post") do |f|%>
+   <p><strong> <%= label_tag(:email, "Email")%></strong></p>
+   <p>  <%= email_field_tag(:email)%></p>
+   <p><strong>  <%= label_tag(:password, "Password")%></strong></p>
+    <p> <%= password_field_tag(:password)%></p>
+<%=submit_tag("Sign in")%>
+<% end %>
