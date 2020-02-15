@@ -1,0 +1,15 @@
+<h1>Evento</h1>
+<h2><%= @event.name%></h2>
+<br>
+<p><%= @event.discription%></p>
+
+<%if !@rsvp%>
+    <%= form_tag(url: '/rsvp',method: "post") do |f|%>
+        <%= submit_tag "RSVP event"%>
+    <%end%>
+<% else %>
+    <%= form_tag(url: '/rsvp',method: "delete") do |f|%>
+        <%= submit_tag "Rescind RSVP"%>
+        <%end%>
+<%end%>
+<%= link_to "Events", events_path %>

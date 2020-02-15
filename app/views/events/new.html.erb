@@ -1,1 +1,8 @@
-<%= render partial: 'form', locals: {url: '/events',method: 'post', submit: 'Create Event'}%>
+<h1>Evento</h1>
+<div style='text-align:center'>
+    <h3>Create Event</h3>
+    <br>
+    <br>
+    <%= render partial: 'form', locals: {url: '/events',method: 'post', submit: 'Create Event', event: @event}%>
+    <%= link_to 'Events', events_path%>
+</div>

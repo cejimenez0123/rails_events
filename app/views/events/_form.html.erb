@@ -1,7 +1,22 @@
-<%= form_with(model: @event, url: url) do |f|%>
-    <%=label_tag :name%>
-    <%=text_field_tag :name%>
-    <%=label_tag :discription%>
-    <%= text_area_tag :discription, nil %>
-    <%= submit_tag submit%>
+
+
+<%= form_with(model: event, url: url, local: true) do |f|%>
+    <% f.hidden_field created_by_id: current_user.id%>
+    <%=f.label'name','Name:'%>
+    <%=f.text_field :name%>
+    <br>
+    <br>
+    <%= f.label 'discription', 'Discription:'%>
+    <%= f.text_area :discription %>
+    <br>
+    <br>
+ 
+    <%= f.label 'category','Category:'%>
+    <%= f.collection_select(:category_id, Category.all, :id, :name, prompt: true)%>
+    <%# <% f.fields_for(:category) do |t|%>
+        <%# <%= t.label :name%>
+        <%#= t.text_field :name %>
+    <%#end%> 
+    <br>
+    <%= f.submit submit%>
 <%end%>

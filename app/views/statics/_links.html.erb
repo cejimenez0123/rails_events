@@ -1,0 +1,8 @@
+ <%= link_to "Events", events_path%>
+ <% if logged_in?%>
+    <%= link_to "Your RSVPs", rsvps_path%>
+    <% else%>
+    <%= nil %>
+    <%end%>
+    <%= link_to "Create Event", new_event_path%>
+    
