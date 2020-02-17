@@ -1,4 +1,16 @@
-
-    <h1>Evento</h1>
+<h1>Evento</h1>
+    <% if @user.errors.any? %>
+<div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this shoe from being saved:</h2>
+     <ul>
+     <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+    </ul>
+</div>
+    <% end %>
     <h3>Sign Up</h3>
-    <%= render partial: 'form', locals: {user: @user, link: "/users", method: "post",submit: "Sign Up"}%>
+    <%= @user.errors.messages.each do |f|%>
+        <%= f %>
+    <%end%>
+    <%= render partial: 'form', locals: {user: @user, link: "new_users_events_path", method: "post",submit: "Sign Up", user: @user}%>

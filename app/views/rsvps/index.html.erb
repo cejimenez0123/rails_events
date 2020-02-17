@@ -1,11 +1,14 @@
 <h1>Evento</h1>
 <h3>Your RSVPs:</h3>
+
 <% if !@rsvps.empty?%>
-<%= @rsvps.each do |rsvp|%>
+<% @rsvps.each do |rsvp|%>
     <%= link_to "#{rsvp.event.name}", event_path(rsvp.event)%>
-<%end%>
+    <br>
+    <%end%>
 <%else%>
-<p>RSVP to some events in the events page<p>
+    <%="RSVP to some events in the events page"%>
 <%end%>
+<br>
 <%= link_to "Events", events_path%>
 <%= link_to "Home", user_path(current_user)%>

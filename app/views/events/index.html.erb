@@ -1,15 +1,16 @@
 <h1>Evento</h1>
-<%= form_tag("/events",method:'get') do |f|%>
+
+<%= form_with(url: events_path,method: "POST") do |f|%>
+<%@order_by = [ "Most recent","Most old", "A-Z","Z-A"]%>
     <%= label_tag "Categories"%>
     <%= collection_select(:event, :category_id, Category.all, :id, :name, prompt: true)%>
-    <%= submit_tag "Limit to category"%>
-<%end%>
-    <%# <%= form_with(model: @events, url:"/order_by" ) do |f|%>
-        <%#= select("#{@order_by}","id",@order_by.each {|p| p})%>
-        <%#= f.submit "Order by"%>
-  <%# end %>
+
+    
+        <%= select(@option,"id",@order_by.each_with_index {|p,t| [p,t]})%>
+        <%= submit_tag "Filter"%>
+  <% end %>
 <h3>Events:</h3>
 <% @events.each do |event|%>
-   <p> <%= link_to "#{event.name}", event_path(event)%></p>
+   <p> <%= link_to "#{event["name"]}", event_path(event["id"])%></p>
 <%end%>
 <%= link_to "Home", user_path(current_user)%>

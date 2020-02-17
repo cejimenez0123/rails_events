@@ -1,0 +1,5 @@
+<h1>Evento</h1>
+<h3>Events <%= current_user.name%> you are RSVPed to</h3>
+<%= @rsvps.each do |rsvp|%>
+    <% link_to "#{rsvp.event.name}", event_path(rsvp.event)%>
+<%end%>

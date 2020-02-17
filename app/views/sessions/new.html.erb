@@ -1,5 +1,22 @@
 <h1>Evento</h1>
-<h2>Sign In</h2>
+
+    <%# if @user.errors %>
+    <%# byebug%>
+  <div id="error_explanation">
+    <% if flash.alert%>
+    byebug
+    <% flash.alert.each do |f| %>
+        <%= f %>
+        <%end%>
+    <%end%>
+    <%# @user.errors.full_messages.each do |msg| %>
+      <%#= msg %>
+    <%# end %>
+    
+  </div>
+<%# end %>
+
+    <h2>Sign In</h2>
 <%=form_with(url: "/signin",method: "post") do |f|%>
    <p><strong> <%= label_tag(:email, "Email")%></strong></p>
    <p>  <%= email_field_tag(:email)%></p>
