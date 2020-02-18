@@ -80,5 +80,6 @@ class EventsController < ApplicationController
         @option = params.dig(:id) 
         
         hash = hash_order(@option,hash) if !@option.nil?
+        hash
     end
 end
