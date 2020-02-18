@@ -10,19 +10,18 @@ class EventsController < ApplicationController
         
     end
     def index_scope
+        @order_by = [ "Most recent","Most old", "A-Z","Z-A"]
         
-        if params.dig(:event,:category_id) && !params.dig(:event,:category_id).empty?
+        if params.dig(:events,:category_id) && !params.dig(:events,:category_id).empty?
             @events = Event.all.where(category_id: params[:event][:category_id])     
-            flash[:events] = @events
-        elsif params.dig(:event,:category_id) == nil
-            @events.errors
-            flash[:events] = Event.all
+            
+            @events = reorder(@events)
+        elsif params.dig(:event,:category_id).empty?
+           @events = reorder(@events)
         else 
-            flash[:events] = Event.all
-        end
-        @option = params.dig(:id) 
-        @events = reorder(@option,flash[:events]) if !@option.nil?
-                       
+            binding.pry
+            @events = Event.all
+        end                     
         redirect_to events_path
 
     end
@@ -63,7 +62,7 @@ class EventsController < ApplicationController
     def event_params
         params.require(:event).permit(:name,:discription,:created_by_id,:category_id, category_attributes:[:name])
     end
-    def reorder(order,hash)
+    def hash_order(order,hash)
   
         if order == "Most old"
            hash.order("created_at DESC")
@@ -76,5 +75,10 @@ class EventsController < ApplicationController
         else
             hash.order("created_at ASC")
         end
+    end
+    def reorder(hash)
+        @option = params.dig(:id) 
+        
+        hash = hash_order(@option,hash) if !@option.nil?
     end
 end
